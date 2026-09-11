@@ -9,7 +9,7 @@ const configs = {
   cameras: { number: '03', title: 'Camera & Location Monitoring', eyebrow: 'COVERAGE INTELLIGENCE', description: 'Review camera sources and the locations represented in your dataset.', icon: Camera, chartTitle: 'Records by camera', chartKey: 'camera', color: '#417987' },
 }
 
-export default function DashboardDetail({ rows, fileName, onImport, importError }) {
+export default function DashboardDetail({ rows, fileName, onImport, importError, projectName }) {
   const { kind } = useParams()
   const config = configs[kind] || configs.vehicles
   const Icon = config.icon
@@ -23,10 +23,10 @@ export default function DashboardDetail({ rows, fileName, onImport, importError 
       <div className="detail-back-row"><Link className="back-link" to="/dashboards"><ArrowLeft size={16} />All dashboards</Link><label className="csv-import-button csv-import-button-small"><Upload size={15} />Import CSV<input accept=".csv,text/csv" onChange={onImport} type="file" /></label></div>
       {importError && <p className="csv-import-error" role="alert">{importError}</p>}
       <div className="page-intro">
-        <div><p className="section-kicker">{config.eyebrow}</p><h1>{config.title}</h1><p className="intro-copy">{config.description}</p></div>
+        <div><p className="section-kicker">{config.eyebrow}</p><h1>{config.title}</h1><p className="intro-copy">{projectName} data: {config.description}</p></div>
         <div className="detail-heading-icon"><Icon size={24} /></div>
       </div>
-      <div className="dashboard-source-bar"><div className="source-icon"><FileText size={17} /></div><div><strong>{fileName || 'Sample traffic data'}</strong><span>{rows.length} records powering this view</span></div><span className="source-status">{config.number} / 03</span></div>
+      <div className="dashboard-source-bar"><div className="source-icon"><FileText size={17} /></div><div><strong>{projectName} / {fileName || 'Sample traffic data'}</strong><span>{rows.length} records powering this view</span></div><span className="source-status">{config.number} / 03</span></div>
 
       <div className="traffic-stat-grid detail-stat-grid">
         <div className="traffic-stat-card"><div className="traffic-stat-icon"><Car size={19} /></div><div><span>Traffic volume</span><strong>{summary.total.toLocaleString()}</strong></div></div>

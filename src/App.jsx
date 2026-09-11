@@ -3,21 +3,41 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 
 import DashboardDetail from './components/DashboardDetail'
 import DashboardHub from './components/DashboardHub'
+import DocumentIntelligence from './components/DocumentIntelligence'
+import ProjectConnectionRequired from './components/ProjectConnectionRequired'
+import ProjectComingSoon from './components/ProjectComingSoon'
 
 import PlaceholderPage from './components/PlaceholderPage'
 import Sidebar from './components/Sidebar'
 import Topbar from './components/Topbar'
 
-import { normalizeTrafficData, parseTrafficCsv, sampleTrafficData } from './data/dashboardData'
+import { normalizeTrafficData, parseTrafficCsv, projectDatasets } from './data/dashboardData'
 import { routePaths } from './data/navigation'
+import { projects } from './data/projects'
 
 export default function App() {
 
   const [searchOpen, setSearchOpen] = useState(false)
 
-  const [trafficData, setTrafficData] = useState(sampleTrafficData)
+  const [connectedProject, setConnectedProject] = useState(projects[0])
+  const [trafficData, setTrafficData] = useState(projectDatasets[projects[0].key])
   const [fileName, setFileName] = useState('Sample traffic data')
   const [importError, setImportError] = useState('')
+
+  function handleProjectConnect(project) {
+    if (project.comingSoon && !project.created) return
+    setConnectedProject(project)
+    setTrafficData(projectDatasets[project.key] || [])
+    setFileName(`${project.name} sample data`)
+    setImportError('')
+  }
+
+  function handleProjectDisconnect() {
+    setConnectedProject(null)
+    setTrafficData([])
+    setFileName('No project connected')
+    setImportError('')
+  }
 
   async function handleImport(event) {
     const [file] = event.target.files || []
@@ -38,7 +58,7 @@ export default function App() {
   return (
     <div className="app-shell">
 
-      <Sidebar />
+      <Sidebar connectedProject={connectedProject} onProjectConnect={handleProjectConnect} onProjectDisconnect={handleProjectDisconnect} />
 
       <main className="main-content">
 
@@ -61,24 +81,51 @@ export default function App() {
             <Route
               path="/dashboards"
               element={
-                <DashboardHub
-                  fileName={fileName}
-                  importError={importError}
-                  onImport={handleImport}
-                  rows={trafficData}
-                />
+                !connectedProject ? (
+                  <ProjectConnectionRequired />
+                ) : connectedProject.comingSoon ? (
+                  <ProjectComingSoon projectName={connectedProject.name} />
+                ) : (
+                  <DashboardHub
+                    fileName={fileName}
+                    importError={importError}
+                    onImport={handleImport}
+                    projectName={connectedProject.name}
+                    rows={trafficData}
+                  />
+                )
               }
             />
 
             <Route
               path="/dashboards/:kind"
               element={
-                <DashboardDetail
-                  fileName={fileName}
-                  importError={importError}
-                  onImport={handleImport}
-                  rows={trafficData}
-                />
+                !connectedProject ? (
+                  <ProjectConnectionRequired />
+                ) : connectedProject.comingSoon ? (
+                  <ProjectComingSoon projectName={connectedProject.name} />
+                ) : (
+                  <DashboardDetail
+                    fileName={fileName}
+                    importError={importError}
+                    onImport={handleImport}
+                    projectName={connectedProject.name}
+                    rows={trafficData}
+                  />
+                )
+              }
+            />
+
+            <Route
+              path="/document-intelligence"
+              element={
+                !connectedProject ? (
+                  <ProjectConnectionRequired />
+                ) : connectedProject.comingSoon ? (
+                  <ProjectComingSoon projectName={connectedProject.name} />
+                ) : (
+                  <DocumentIntelligence fileName={fileName} projectName={connectedProject.name} rows={trafficData} />
+                )
               }
             />
 
