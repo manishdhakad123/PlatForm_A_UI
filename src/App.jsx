@@ -3,33 +3,52 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 
 import DashboardDetail from './components/DashboardDetail'
 import DashboardHub from './components/DashboardHub'
+import OntologyPage from './components/ontology/OntologyPage'
 
 import PlaceholderPage from './components/PlaceholderPage'
 import Sidebar from './components/Sidebar'
 import Topbar from './components/Topbar'
 
-import { normalizeTrafficData, parseTrafficCsv, sampleTrafficData } from './data/dashboardData'
+import {
+  normalizeTrafficData,
+  parseTrafficCsv,
+  sampleTrafficData,
+} from './data/dashboardData'
+
 import { routePaths } from './data/navigation'
 
 export default function App() {
-
   const [searchOpen, setSearchOpen] = useState(false)
 
-  const [trafficData, setTrafficData] = useState(sampleTrafficData)
-  const [fileName, setFileName] = useState('Sample traffic data')
-  const [importError, setImportError] = useState('')
+  const [trafficData, setTrafficData] =
+    useState(sampleTrafficData)
+
+  const [fileName, setFileName] =
+    useState('Sample traffic data')
+
+  const [importError, setImportError] =
+    useState('')
 
   async function handleImport(event) {
     const [file] = event.target.files || []
+
     if (!file) return
 
     try {
-      const importedRows = await parseTrafficCsv(file)
-      setTrafficData(normalizeTrafficData(importedRows))
+      const importedRows =
+        await parseTrafficCsv(file)
+
+      setTrafficData(
+        normalizeTrafficData(importedRows)
+      )
+
       setFileName(file.name)
       setImportError('')
     } catch (error) {
-      setImportError(error.message || 'Unable to import this CSV file.')
+      setImportError(
+        error.message ||
+          'Unable to import this CSV file.'
+      )
     } finally {
       event.target.value = ''
     }
@@ -51,9 +70,23 @@ export default function App() {
 
           <Routes>
 
+            {/* HOME */}
+
             <Route
               path="/"
-              element={<Navigate to="/home" replace />}
+              element={
+                <Navigate
+                  to="/home"
+                  replace
+                />
+              }
+            />
+
+            {/* ONTOLOGY */}
+
+            <Route
+              path="/ontology"
+              element={<OntologyPage />}
             />
 
             {/* DASHBOARD CENTER */}
@@ -85,7 +118,11 @@ export default function App() {
             {/* OTHER PLATFORM PAGES */}
 
             {routePaths
-              .filter((path) => path !== '/dashboards')
+              .filter(
+                (path) =>
+                  path !== '/dashboards' &&
+                  path !== '/ontology'
+              )
               .map((path) => (
                 <Route
                   element={<PlaceholderPage />}
@@ -94,9 +131,16 @@ export default function App() {
                 />
               ))}
 
+            {/* UNKNOWN URL */}
+
             <Route
               path="*"
-              element={<Navigate to="/home" replace />}
+              element={
+                <Navigate
+                  to="/home"
+                  replace
+                />
+              }
             />
 
           </Routes>
