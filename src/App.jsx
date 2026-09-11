@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import Dashboard from './components/Dashboard'
 import PlaceholderPage from './components/PlaceholderPage'
 import Sidebar from './components/Sidebar'
 import Topbar from './components/Topbar'
@@ -15,9 +16,10 @@ export default function App() {
         <Topbar searchOpen={searchOpen} setSearchOpen={setSearchOpen} />
         <section className="content-wrap">
           <Routes>
-            <Route path="/" element={<Navigate to="/home" replace />} />
+            <Route path="/" element={<Navigate to="/dashboards" replace />} />
+            <Route element={<Dashboard />} path="/dashboards" />
             {routePaths.map((path) => <Route element={<PlaceholderPage />} key={path} path={path} />)}
-            <Route path="*" element={<Navigate to="/home" replace />} />
+            <Route path="*" element={<Navigate to="/dashboards" replace />} />
           </Routes>
         </section>
       </main>

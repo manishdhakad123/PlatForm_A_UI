@@ -1,4 +1,4 @@
-import { ChevronDown, HelpCircle, Sparkles } from 'lucide-react'
+import { ChevronDown, FolderKanban, HelpCircle, Sparkles } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
 import { navigation } from '../data/navigation'
 
@@ -15,14 +15,17 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <div className="workspace-switcher">
-        <div className="workspace-avatar">A</div>
-        <div className="workspace-copy">
-          <span>Workspace</span>
-          <strong>Platform A</strong>
-        </div>
-        <ChevronDown size={16} />
-      </div>
+      <section className="projects-section" aria-labelledby="projects-heading">
+        <p className="nav-eyebrow" id="projects-heading">Projects</p>
+        <button className="project-item active" type="button" aria-current="page">
+          <span className="project-icon"><FolderKanban size={16} strokeWidth={1.8} /></span>
+          <span className="project-copy">
+            <strong>Platform A</strong>
+            <small>Current project</small>
+          </span>
+          <span className="project-status" aria-hidden="true" />
+        </button>
+      </section>
 
       <nav className="main-nav" aria-label="Primary navigation">
         <p className="nav-eyebrow">Workspace</p>
