@@ -703,3 +703,183 @@ button {
     text-align: left;
   }
 }
+/* =========================================================
+   CSV IMPORT
+   ========================================================= */
+
+.csv-upload-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.csv-upload-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 15px;
+  border: 0;
+  border-radius: 7px;
+  background: #d8ed71;
+  color: #203036;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.csv-upload-button:hover {
+  background: #cbe25d;
+}
+
+.csv-status {
+  font-size: 10px;
+  color: #7c8b86;
+}
+
+.csv-information {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 15px 17px;
+  border: 1px solid #e2e9e6;
+  border-radius: 9px;
+  background: #fbfcfb;
+  color: #58736a;
+}
+
+.csv-information > div {
+  display: grid;
+  gap: 4px;
+  flex: 1;
+}
+
+.csv-information strong {
+  font-size: 11px;
+  color: #344540;
+}
+
+.csv-information span {
+  font-size: 10px;
+  color: #899691;
+}
+
+.csv-loaded {
+  padding: 5px 8px;
+  border-radius: 5px;
+  background: #e4f0df;
+  color: #527761 !important;
+  font-size: 9px !important;
+}
+
+.location-analysis-list {
+  display: grid;
+  gap: 10px;
+}
+
+.location-analysis-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 15px;
+  border-radius: 7px;
+  background: #f1f5f2;
+}
+
+.location-analysis-row span {
+  font-size: 11px;
+  color: #61736d;
+}
+
+.location-analysis-row strong {
+  font: 600 14px 'Space Grotesk', sans-serif;
+  color: #344540;
+}
+
+
+/* =========================================================
+   CHART RESPONSIVENESS
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+  .csv-upload-area {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .csv-upload-button {
+    flex: 1;
+    justify-content: center;
+  }
+
+}
+
+/* =========================================================
+   DASHBOARD HUB AND DETAIL VIEWS
+   ========================================================= */
+
+.dashboard-hub .page-intro,
+.dashboard-detail-page .page-intro {
+  margin-bottom: 22px;
+}
+
+.csv-import-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 15px;
+  border: 0;
+  border-radius: 7px;
+  color: #203036;
+  background: #d8ed71;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.csv-import-button:hover { background: #cbe25d; }
+.csv-import-button input { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; }
+.csv-import-button-small { padding: 9px 12px; }
+.csv-import-error { margin: -10px 0 16px; padding: 10px 13px; border: 1px solid #efc4b3; border-radius: 7px; color: #9b553d; background: #fff0e9; font-size: 11px; }
+
+.dashboard-source-bar {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 22px;
+  padding: 13px 15px;
+  border: 1px solid #e2e9e6;
+  border-radius: 9px;
+  background: #fbfcfb;
+}
+
+.source-icon { display: grid; place-items: center; width: 31px; height: 31px; color: #527761; background: #e4f0df; border-radius: 7px; }
+.dashboard-source-bar > div:nth-child(2) { display: grid; gap: 3px; flex: 1; min-width: 0; }
+.dashboard-source-bar strong { overflow: hidden; color: #344540; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.dashboard-source-bar span { color: #899691; font-size: 10px; }
+.dashboard-source-bar .source-status { padding: 5px 8px; border-radius: 5px; color: #527761; background: #e4f0df; font-size: 9px; font-weight: 700; white-space: nowrap; }
+
+.dashboard-card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 22px; }
+.dashboard-card { display: grid; gap: 27px; min-height: 230px; padding: 22px; border: 1px solid rgba(35, 53, 55, .1); border-radius: 10px; color: #203334; text-decoration: none; transition: transform .18s ease, box-shadow .18s ease; }
+.dashboard-card:hover { transform: translateY(-3px); box-shadow: 0 12px 22px rgba(35, 53, 55, .09); }
+.dashboard-card-mint { background: #dcedcb; }.dashboard-card-peach { background: #f9d9c8; }.dashboard-card-sky { background: #cce3e9; }
+.dashboard-card-top { display: flex; align-items: center; justify-content: space-between; color: #466b5e; }
+.dashboard-card-peach .dashboard-card-top { color: #9a634b; }.dashboard-card-sky .dashboard-card-top { color: #3e7180; }
+.dashboard-card-number { font: 700 12px 'Space Grotesk', sans-serif; letter-spacing: .08em; }
+.dashboard-card h2 { margin: 0 0 9px; font: 600 20px/1.1 'Space Grotesk', sans-serif; color: #203334; }
+.dashboard-card p { max-width: 260px; margin: 0; color: #5f746a; font-size: 12px; line-height: 1.55; }
+.dashboard-card-link { display: flex; align-items: center; gap: 6px; align-self: end; color: #365b4f; font-size: 11px; font-weight: 700; }
+.dashboard-card-link svg { transition: transform .18s ease; }.dashboard-card:hover .dashboard-card-link svg { transform: translateX(3px); }
+
+.dashboard-summary-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 15px; }
+.dashboard-summary-panel { padding: 22px; border: 1px solid #e3eae7; border-radius: 10px; background: #fbfcfb; }
+.dashboard-summary-panel h2 { margin: 8px 0 20px; font: 600 18px/1.1 'Space Grotesk', sans-serif; color: #263437; }
+.dashboard-summary-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }.dashboard-summary-stats div { display: grid; gap: 5px; }.dashboard-summary-stats strong { font: 700 25px/1 'Space Grotesk', sans-serif; color: #2d5549; }.dashboard-summary-stats span { color: #899691; font-size: 10px; }
+.dashboard-location-list { display: grid; gap: 10px; }.dashboard-location-list div { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-top: 1px solid #e9efec; color: #556862; font-size: 11px; }.dashboard-location-list span { display: flex; align-items: center; gap: 7px; }.dashboard-location-list strong { color: #344540; }
+.detail-back-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 17px; }.back-link { display: inline-flex; align-items: center; gap: 7px; color: #58736a; font-size: 11px; font-weight: 700; text-decoration: none; }.back-link:hover { color: #2c5549; }
+.detail-heading-icon { display: grid; place-items: center; width: 50px; height: 50px; color: #467c62; background: #e3f1db; border-radius: 12px; }.detail-stat-grid { margin-bottom: 22px; }
+.detail-chart-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 15px; margin-bottom: 22px; }.chart-panel { min-height: 350px; }.chart-frame { height: 245px; }.pie-chart-frame { height: 210px; }.chart-legend { display: flex; flex-wrap: wrap; gap: 8px 13px; }.chart-legend span { display: inline-flex; align-items: center; gap: 5px; color: #71807a; font-size: 10px; }.chart-legend i { width: 7px; height: 7px; border-radius: 50%; }.chart-legend strong { color: #344540; }
+
+@media (max-width: 860px) { .dashboard-card-grid { grid-template-columns: 1fr; }.dashboard-card { min-height: 190px; }.dashboard-summary-grid, .detail-chart-grid { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .dashboard-summary-stats { grid-template-columns: 1fr; }.page-intro { gap: 18px; }.csv-import-button { width: 100%; justify-content: center; }.detail-back-row { align-items: flex-start; gap: 12px; flex-direction: column-reverse; }.csv-import-button-small { width: auto; }.dashboard-source-bar .source-status { display: none; } }
