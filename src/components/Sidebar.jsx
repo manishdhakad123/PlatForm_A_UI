@@ -1,4 +1,4 @@
-import { Check, ChevronDown, FolderKanban, HelpCircle, Plug, Plus, Sparkles, Trash2 } from 'lucide-react'
+import { Check, ChevronDown, Eye, FolderKanban, HelpCircle, Plug, Plus, Trash2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { navigation } from '../data/navigation'
@@ -11,11 +11,11 @@ export default function Sidebar({ connectedProject, onProjectConnect, onProjectD
     <aside className="sidebar">
       <div className="brand-lockup">
         <div className="brand-mark" aria-hidden="true">
-          <Sparkles size={19} strokeWidth={2.2} />
+          <Eye size={25} strokeWidth={2.1} />
         </div>
         <div>
-          <p className="brand-name">VISION IQ</p>
-          <p className="brand-caption">{connectedProject?.name || 'PLATFORM A'}</p>
+          <p className="brand-name">VisionIQ</p>
+          <p className="brand-caption">See Smarter<br />Safer Tomorrow</p>
         </div>
       </div>
 
@@ -41,10 +41,10 @@ export default function Sidebar({ connectedProject, onProjectConnect, onProjectD
           Help center
         </button>
         <div className="user-card">
-          <div className="user-avatar">SR</div>
+          <div className="user-avatar">U</div>
           <div className="user-copy">
-            <strong>Admin</strong>
-            <span>Administrator</span>
+            <strong>User</strong>
+            <span>VisionIQ User</span>
           </div>
           <ChevronDown size={15} />
         </div>
