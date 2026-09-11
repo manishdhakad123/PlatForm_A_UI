@@ -8,7 +8,7 @@ const dashboardCards = [
   { path: '/dashboards/cameras', number: '03', title: 'Camera & Location Monitoring', description: 'Camera coverage, active locations and imported detection records.', icon: Camera, tone: 'sky' },
 ]
 
-export default function DashboardHub({ rows, fileName, onImport, importError }) {
+export default function DashboardHub({ rows, fileName, onImport, importError, projectName }) {
   const summary = summarizeData(rows)
   const topLocations = groupBy(rows, 'location').sort((a, b) => b.value - a.value).slice(0, 3)
 
@@ -18,7 +18,7 @@ export default function DashboardHub({ rows, fileName, onImport, importError }) 
         <div>
           <p className="section-kicker">TRAFFIC INTELLIGENCE</p>
           <h1>Dashboards</h1>
-          <p className="intro-copy">Choose a dashboard to explore the latest traffic data.</p>
+          <p className="intro-copy">{projectName} data is connected. Choose a dashboard to explore the latest traffic data.</p>
         </div>
         <label className="csv-import-button">
           <Upload size={16} />
@@ -29,7 +29,7 @@ export default function DashboardHub({ rows, fileName, onImport, importError }) 
 
       <div className="dashboard-source-bar">
         <div className="source-icon"><FileUp size={17} /></div>
-        <div><strong>{fileName || 'Sample traffic data'}</strong><span>{rows.length} records loaded across all dashboards</span></div>
+        <div><strong>{projectName} / {fileName || 'Sample traffic data'}</strong><span>{rows.length} records loaded across all dashboards</span></div>
         <span className="source-status">Live dataset</span>
       </div>
       {importError && <p className="csv-import-error" role="alert">{importError}</p>}
