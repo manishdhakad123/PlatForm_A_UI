@@ -1,4 +1,4 @@
-import { Bell, Search } from 'lucide-react'
+import { Bell, CircleHelp, Search, Settings2 } from 'lucide-react'
 import { useLocation } from 'react-router-dom'
 import { navigation } from '../data/navigation'
 
@@ -9,7 +9,7 @@ export default function Topbar({ searchOpen, setSearchOpen }) {
   return (
     <header className="topbar">
       <div className="breadcrumb">
-        <span>Platform A</span>
+        <span>VisionIQ workspace</span>
         <i>/</i>
         <strong>{activeItem}</strong>
       </div>
@@ -34,9 +34,12 @@ export default function Topbar({ searchOpen, setSearchOpen }) {
           <Bell size={18} />
           <span />
         </button>
+        <button aria-label="Help" className="icon-button topbar-optional" type="button"><CircleHelp size={17} /></button>
+        <button aria-label="Settings" className="icon-button topbar-optional" type="button"><Settings2 size={17} /></button>
         <div className="topbar-divider" />
         <span className="status-dot" />
         <span className="system-status">All systems operational</span>
+        <div className="topbar-profile"><span className="topbar-avatar">AM</span><span><strong>Alex Morgan</strong><small>Operator</small></span></div>
       </div>
     </header>
   )

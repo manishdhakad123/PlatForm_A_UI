@@ -41,10 +41,10 @@ export default function Sidebar({ connectedProject, onProjectConnect, onProjectD
           Help center
         </button>
         <div className="user-card">
-          <div className="user-avatar">SR</div>
+          <div className="user-avatar">AM</div>
           <div className="user-copy">
-            <strong>Admin</strong>
-            <span>Administrator</span>
+            <strong>Alex Morgan</strong>
+            <span>VisionIQ operator</span>
           </div>
           <ChevronDown size={15} />
         </div>
